@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-
-
 /**
-
  */
 public class LoginController {
 
     @RequestMapping("/login")
     public String login(ModelMap model, @ModelAttribute("user") User user, HttpSession session, HttpServletRequest request) {
+        System.out.println("Callled...");
         if (request.getMethod().equals("POST") ) {
-            return "forward:./main";
+            if(user.getLoginId().equals("darren")) {
+                return "forward:./main";
+            }
         } else {
             model.put("user", new User());
         }
