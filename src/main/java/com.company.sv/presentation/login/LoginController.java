@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
@@ -16,15 +17,20 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     @RequestMapping("/login.login")
-    public String login(ModelMap model, @ModelAttribute("user") User user, HttpSession session, HttpServletRequest request) {
+    public String login(ModelMap model, @ModelAttribute("user") User user, HttpSession session, HttpServletRequest request,HttpServletResponse response) {
         System.out.println("Callled...");
         if (request.getMethod().equals("POST") ) {
             if(user.getLoginId().equals("darren")) {
                 return "forward:./main.jsp";
+            } else {
+                model.put("error", "User or Password is incorrect");
+                //model.put("errorMessage","User or Password is incorrect");
+                model.put("user",user);
             }
         } else {
+            model.put("error","");
             model.put("user", new User());
         }
-        return "forward:./login.jsp";
+        return "./login";
     }
 }
