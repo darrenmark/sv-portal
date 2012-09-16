@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="GWT DEV Mode" default="portalDevMode" basedir=".">
+
+    <!--Run the 8.x portal app in dev mode-->
+    <target name="portalDevMode" description="Run the 8.x portal module in development mode">
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.DevMode">
+            <classpath>
+                <path refid="srcAndLibs"/>
+            </classpath>
+            <jvmarg value="-Xmx1024M"/>
+            <arg value="-noserver"/>
+            <arg value="-startupUrl"/>
+            <arg value="http://localhost:8080/sv/Main.html"/>
+            <arg value="-bindAddress"/>
+            <arg value="0.0.0.0"/>
+            <arg value="com.nd.sv.presentation.gwt.Main"/>
+        </java>
+    </target>
+
+    <target name="portalCompile" description="Compile the  module">
+        <delete failonerror="false">
+            <fileset dir="out/artifacts/sv_portal/com.nd.sv.presentation.gwt.Main/" includes="*.cache.*"/>
+            <fileset dir="war/" includes="**/*.*"/>
+        </delete>
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+            <classpath>
+                <path refid="srcAndLibs"/>
+            </classpath>
+            <jvmarg value="-Xmx1024M"/>
+            <arg value="-style" />
+            <arg value="pretty" />
+            <arg value="com.nd.sv.presentation.gwt.Main"/>
+        </java>
+        <copy todir="out/artifacts/sv_portal">
+            <fileset dir="war/" includes="**/*.*"/>
+        </copy>
+        <delete failonerror="false">
+            <fileset dir="war/" includes="**/*.*"/>
+        </delete>
+    </target>
+
+    <target name="portalClean" description="Remove the 8.x portal module">
+        <delete failonerror="false">
+            <fileset dir="resources/com.nd.sv.presentation.gwt.Main/" includes="*.cache.*"/>
+            <fileset dir="war/com.nd.sv.presentation.gwt.Main/" includes="**/*.*"/>
+        </delete>
+    </target>
+
+    <path id="srcAndLibs">
+        <pathelement location="../sv-portal/src/main/java"/>
+        <fileset dir="../lib/gwt/" includes="*.jar"/>
+        <fileset dir="../lib/gxt/" includes="*.jar"/>
+        <fileset dir="../lib/guava/" includes="*.jar"/>
+    </path>
+
+</project>
+
