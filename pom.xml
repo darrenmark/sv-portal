@@ -76,6 +76,12 @@
           <version>${gwtVersion}</version>
           <scope>provided</scope>
       </dependency>
+      <dependency>
+          <groupId>com.sencha.gxt</groupId>
+          <artifactId>gxt</artifactId>
+          <version>3.0.0</version>
+          <scope>provided</scope>
+      </dependency>
   </dependencies>
   <build>
     <finalName>sv-portal</finalName>

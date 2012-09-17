@@ -10,7 +10,7 @@
             <jvmarg value="-Xmx1024M"/>
             <arg value="-noserver"/>
             <arg value="-startupUrl"/>
-            <arg value="http://localhost:8080/sv/Main.html"/>
+            <arg value="http://localhost:8080/sv/main.login"/>
             <arg value="-bindAddress"/>
             <arg value="0.0.0.0"/>
             <arg value="com.nd.sv.presentation.gwt.Main"/>
@@ -36,6 +36,7 @@
         </copy>
         <delete failonerror="false">
             <fileset dir="war/" includes="**/*.*"/>
+            <fileset dir="out/artifacts/sv_portal/com.nd.sv.presentation.gwt.Main/" includes="**/*.*"/>
         </delete>
     </target>
 
@@ -47,7 +48,7 @@
     </target>
 
     <path id="srcAndLibs">
-        <pathelement location="../sv-portal/src/main/java"/>
+        <pathelement location="src/main/java"/>
         <fileset dir="../lib/gwt/" includes="*.jar"/>
         <fileset dir="../lib/gxt/" includes="*.jar"/>
         <fileset dir="../lib/guava/" includes="*.jar"/>
