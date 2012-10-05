@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact name="sv-portal:GWT">
+    <output-path>$PROJECT_DIR$/out/artifacts/sv_portal_GWT</output-path>
+    <root id="root">
+      <element id="gwt-compiler-output" facet="sv-portal/gwt/GWT" />
+    </root>
+  </artifact>
+</component>

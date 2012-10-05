@@ -12,24 +12,12 @@
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-    <!--Allow auto scanning for @Controller definitions for @MVC-->
-    <context:component-scan base-package="com.nd.sv"/>
-    <!--<context:component-scan base-package="com.aptare.sc.gwt"/>-->
-
-    <!--Map .rpc urls onto our GWT to spring adapter-->
-    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <value>
-                /**/*.rpc=gwtSpringAdapter
-            </value>
-        </property>
-    </bean>
+    <context:component-scan base-package="com.nd.sv.presentation.login"/>
 
 
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 
 
-    <!--The JstlView, i.e. a JSP page. View names should be returned from the controller as dir/page-->
     <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="order" value="2"/>
         <property name="viewClass">
@@ -39,26 +27,19 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!-- Get locale from HTTP accept-language header -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>
 
-    <!-- Localized messages -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="locales/MessageResources" />
         <property name="fileEncodings" value="UTF-8" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
-    <!--Handle multipart forms for file uploads-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!--1 MB-->
         <property name="maxUploadSize" value="1048576"/>
     </bean>
 
-    <!--This spring file contains the mappings of BASE_URL's to controller beans. BeanNameUrlHandlerMapping is used to
-    map the controllers through the names that are declared for the controller definition.  This is the file to
-    look at to figure out which controller gets fired for which BASE_URL.  The actual JSP (or view) that results from
-    the BASE_URL is determined by the controller, but the pattern of substituting .jsp for .mvc is generally followed.-->
     <bean id="beanNameUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
 
 </beans>

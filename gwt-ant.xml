@@ -36,7 +36,6 @@
         </copy>
         <delete failonerror="false">
             <fileset dir="war/" includes="**/*.*"/>
-            <fileset dir="out/artifacts/sv_portal/com.nd.sv.presentation.gwt.Main/" includes="**/*.*"/>
         </delete>
     </target>
 
